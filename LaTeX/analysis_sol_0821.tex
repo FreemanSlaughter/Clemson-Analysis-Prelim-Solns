@@ -1,0 +1,252 @@
+
+\begin{itemize}
+\item[1.] Let $f:[0,1] \rightarrow \bbr$ be a bounded function. Suppose that for every $\varepsilon > 0$
+there exists a continuous function $g:[0,1] \rightarrow \bbr$ such that
+$$||f-g||_{\infty} = \sup_{x\in[0,1]} |f(x) - g(x)| < \varepsilon.$$
+Prove that $f$ is continuous on $[0, 1]$.
+ 
+\begin{proof}
+Let $|x-y|<\delta$. By continuity, $|g(x) - g(y)| < \eta$.
+Hence 
+\begin{align*}
+    |f(x) - f(y)| &= |f(x) - g(x)| + |g(x) - g(y)| + |g(y) - f(y)| \\
+    &< ||f-g||_{\infty} + \eta + ||f-g||_{\infty} \\
+    &< 2\varepsilon + \eta.
+\end{align*}
+\end{proof}
+
+
+
+
+
+\item[2.] Let $\calh$ be an infinite-dimensional separable Hilbert space and $\{e_n\}_{n=1}^{\infty}$
+be some orthonormal basis of $\calh$. Suppose $A, B :\calh \rightarrow \calh$ are two bounded linear operators
+such that
+$$\sum_{n=1}^{\infty} ||Ae_n||^2 < \infty, \ \ \ \ \ \sum_{n=1}^{\infty} ||Be_n||^2 < \infty.$$
+Prove that for any orthonormal basis $\{f_n\}_{n=1}^{\infty}$ of $\calh$ the series $\sum_{n=1}^{\infty} \ip{Af_n}{Bf_n}$ converges and 
+$$\sum_{n=1}^{\infty} \ip{Af_n}{Bf_n} = \sum_{n=1}^{\infty} \ip{Ae_n}{Be_n}.$$
+\begin{proof}
+By Cauchy-Schwarz and $2ab \leq a^2 + b^2$, 
+\begin{align*}
+    |\sum \ip{Af_n}{Bf_n}| &\leq \sum |\ip{Af_n}{Bf_n}| \\
+    &\leq \sum ||Af_n|| \ ||Bf_n|| \\
+    &\leq \frac{1}{2}\sum ||Af_n||^2 + \frac{1}{2}\sum ||Bf_n||^2 ,
+\end{align*}
+So the series in question converges. 
+
+\medskip 
+
+Recall for ONB $\{e_n\}$, we have that $\ip{x}{y} = \sum \ip{x}{e_n} \ip{e_n}{y}$. Therefore, 
+\begin{align*}
+    \sum_n \ip{Af_n}{Bf_n} &= \sum_n \ip{f_n}{A^*Bf_n} \\
+     &= \sum_n \sum_k \ip{f_n}{e_k} \ip{e_k}{A^*Bf_n} \\ 
+     &= \sum_n \sum_k \ip{B^*Ae_k}{f_n} \ip{f_n}{e_k} \\
+     &= \sum_k \ip{B^*Ae_k}{e_k} \\
+     &= \sum_k \ip{Ae_k}{Be_k}.
+\end{align*}
+\end{proof}
+
+
+
+\item[3.] Let $C[0, 1]$ be the Banach space of all real-valued continuous functions on $[0, 1]$ equipped with the supremum norm $||f||_{\infty} = \sup_{x\in[0,1]} |f(x)|$. Consider the subset
+$M[0, 1] := \{f \in C[0, 1] : \int_{0}^{1} f(x) \ dx = 0\}$.
+\begin{enumerate}[(a)]
+\item Prove that $M[0, 1]$ is a closed subspace and then use this to show that $M[0, 1]$
+equipped with the same supremum norm is a Banach space itself.
+\begin{proof}
+Let $\{f_n\}$ be in $M[0, 1]$ such that $f_n \rightarrow f$. By continuity, there exists a finite number $M$ such that $|f_n(x)| \leq M$ for all $x$ and $n$. Thus $|f(x)| \leq |f(x)-f_n(x)| + |f_n(x)|\leq \varepsilon + M$ for $n$ large enough. This integrable function dominates, so we can exchange integral and limit.
+$$\int_0^1 f \ dx = \lim_{n \rightarrow \infty} \int_0^1 f_x \ dx = 0.$$
+Thus $f$ is in our space, so closed.
+\end{proof}
+
+\item Prove that $l:M[0, 1] \rightarrow \bbr$ defined by 
+$$l(f) = f(0) + \int_{1/2}^{1} f(x) \ dx$$
+is a bounded linear functional and compute its norm.
+\phantomsection\label{q:s20-2}
+See \hyperref[q:s20-2]{Summer 2020 \#2}.
+\begin{proof}
+$$|l(f)| \leq |f(0)| + \int_{1/2}^{1} |f(x)| \ dx \leq ||f||_{\infty} + \frac{1}{2}||f||_{\infty} = \frac{3}{2}||f||_{\infty}.$$ 
+Thus $||l|| \leq \frac{3}{2}$. 
+
+\medskip 
+
+Construct (draw a picture) $f_n$'s as follows: $f_n(0)=1$, linear on $0$ to $1/n$, constant $-1$ on $1/n$ to  $1/2-1/n$, linear on $1/2-1/n$ to $1/2+1/n$, constant $1$ on $1/2+1/n$ to $1-1/n$, then linear from $1-1/n$ to $1$ with $f_n(1)=-1$.
+
+\medskip 
+
+These functions tend towards the (discontinuous) $f$ that looks like two rectangles, one negative from $0$ to $1/2$ and one positive $1/2$ to $1$. They're all symmetric, so integrate to $0$. Yet, $l(f)$ is the $f(0)$ plus the area $1/2$ to $1$, so will be $1 + 1/2 = 3/2$. Thus equality.
+\end{proof}
+
+\item Let $l$ be the linear functional from (b). Does there exist $f \in M[0, 1]$ with
+$||f||_{\infty} \leq 1$ such that $l(f) = ||l||$?
+\begin{proof}
+It can never be that $l(f) = ||l||$, as we must either violate continuity or integrating to 0.
+\end{proof}
+\end{enumerate}
+
+
+
+
+\item[4.] Let $\calh$ be a Hilbert space. Suppose $\{x_n\}$ is a bounded sequence of
+vectors in $\calh$ such that $\ip{x_n}{x_m} = ||x_m||^2$
+for all $n > m$. Prove that $\{x_n\}$ is convergent.
+
+\phantomsection\label{q:s16-5}
+See \hyperref[q:s16-5]{Summer 2016 \#5}.
+
+\begin{proof}
+Note that $||x_m||^2 = |\ip{x_n}{x_m}| \leq ||x_m|| \ ||x_n||$ implies that $||x_m|| \leq ||x_n||$ for $m < n$. That is, $\{||x_m||\}$ is an increasing sequence. But increasing and bounded implies that $\{||x_m||\}$ is convergent, thus Cauchy. Hence
+\begin{align*}
+    ||x_n - x_m||^2 &= \ip{x_n - x_m}{x_n - x_m} \\
+    &= \ip{x_n}{x_n} - \ip{x_n }{x_m} - \ip{x_m}{x_n} + \ip{x_m}{x_m} \\ 
+    &= ||x_n||^2 - ||x_m||^2 - ||x_m||^2 + ||x_m||^2 \\
+    &= ||x_n||^2 - ||x_m||^2.
+\end{align*}
+So $\{||x_m||\}$ Cauchy implies $\{x_m\}$ Cauchy, hence convergent.
+\end{proof}
+
+
+
+
+\item[5.] Let $(X,\calm, \mu)$ be a measure space. Suppose $\{A_n : n \in \bbn\} \subseteq \calm$ and
+$\{B_n : n \in \bbn\} \subseteq \calm$ are two sequences of measurable sets such that $B_n \subseteq A_n$ for all $n \in \bbn$.
+Prove that 
+$$\mu(\bigcup_{n=1}^{\infty} A_n) + \sum_{n=1}^{\infty} \mu(B_n) \leq \mu(\bigcup_{n=1}^{\infty} B_n) + \sum_{n=1}^{\infty} \mu(A_n)$$
+
+%\phantomsection\label{q:s17-10}
+%See \hyperref[q:s17-10]{Summer 2017 \#10}.
+\begin{proof}
+Recall $\mu(A_1 \cup A_2) = \mu(A_1) + \mu(A_2) - \mu(A_1 \cap A_2)$. This, along with $B_1 \subseteq A_1, \ B_1 \subseteq A_1$ $\Rightarrow B_1 \cap B_2 \subseteq A_1 \cap A_2$ $\Rightarrow \mu(B_1 \cap B_2) \leq \mu(A_1 \cap A_2)$ gives us 
+\begin{align*}
+    \mu(A_1 \cup A_2) - \mu(B_1 \cup B_2) &= \mu(A_1) + \mu(A_2) - \mu(B_1) - \mu(B_2) - \mu(A_1 \cap A_2) + \mu(B_1 \cap B_2) \\
+    &\leq \mu(A_1) + \mu(A_2) - \mu(B_1) - \mu(B_2) - \mu(A_1 \cap A_2) + \mu(A_1 \cap A_2) \\
+    &=\mu(A_1) + \mu(A_2) - \mu(B_1) - \mu(B_2).
+\end{align*}
+This gives our base case, justifying induction. Suppose that the statement is true for $k$ many sets. 
+\begin{align*}
+    \mu(\bigcup_{n=1}^k A_n \cup A_{n+1}) - \mu(\bigcup_{n=1}^k B_n \cup B_{n+1}) &\leq \mu(\bigcup_{n=1}^k A_n) + \mu(A_{n+1}) - \mu(\bigcup_{n=1}^k B_n) - \mu(B_{n+1}) \\
+    &\leq \sum_{n=1}^k\mu(A_n) + \mu(A_{n+1}) - \sum_{n=1}^k\mu(B_n) - \mu(B_{n+1}) \\
+    &= \sum_{n=1}^{k+1}\mu(A_n) - \sum_{n=1}^{k+1}\mu(B_n).
+\end{align*}
+\end{proof}
+
+
+
+
+
+\item[6.] Let $(X,\calm, \mu)$ be a measure space and $m$ be the Lebesgue measure on $\bbr$.
+Suppose $f : X \rightarrow [0,\infty)$ is a non-negative measurable function.
+\begin{enumerate}[(a)]
+\item State the Fubini Theorem for the product space $X \otimes \bbr$.
+\begin{proof}
+If $\int_{X} \int_{\bbr} |f(x,t)| \ d(\mu \otimes m) < \infty$, then 
+$$\int_{X} \int_{\bbr} f(x,t) \ d(\mu \otimes m) = \int_{\bbr} \int_{X}  f(x,t) \ d(m \otimes \mu).$$
+\end{proof}
+
+\item Prove that 
+$$(\mu \otimes m)(\{(x,t) : 0\leq t < f(x)\}) = \int_{X} f(x) \ d\mu(x).$$
+\begin{proof}
+\begin{align*}
+    (\mu \otimes m)(\{(x,t) : 0\leq t < f(x)\}) &= \int_{X} \int_{\bbr} \chi_{\{0 \leq t < f(x)\}} \ d\mu \ dm \\
+    &= \int_{X} \int_{0}^{f(x)} 1 \ d\mu \ dm \\
+    &= \int_{X} f(x) \ d\mu.
+\end{align*}
+\end{proof}
+
+\item Suppose $\phi : \bbr \rightarrow [0,\infty)$ is a non-negative measurable function, and that
+$\Phi(x) := \int_{0}^{x}\phi(x) \ dm(t)$. Prove that
+$$\int_{X} \Phi(f(x)) \ d\mu(x) = \int_{0}^{\infty} \phi(t) \mu(\{x \in X : t < f(x)\}) \ dm(t).$$
+\begin{proof}
+Substitute $\phi(t)$ with $\phi(t)\chi_{\{t < f(x)\}}$ WLOG. Then,
+\begin{align*}
+    \int_{X} \Phi(f(x)) \ d\mu &= \int_{X} \int_{0}^{\infty} \phi(t)\chi_{\{t < f(x)\}} \ dm \ d\mu \\
+    &= \int_{0}^{\infty} \phi(t) 
+    \int_{X} \chi_{\{t < f(x)\}} \ d\mu \ dm  \\
+    &= \int_{0}^{\infty} \phi(t) \mu(\{t < f(x)\}) \ dm.
+\end{align*}
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[7.]Let $(X,\calm, \mu)$ be a measure space. For $p \in (0,\infty)$ denote (as usual) by $(L^p(X,\mu), \ ||\cdot||_p)$ the corresponding $L^p$ space.
+\begin{enumerate}[(a)]
+\item State the H\"{o}lder inequality for integrals.
+\begin{proof}
+Where $p$ and $q$ satisfy $1/p + 1/q = 1$,
+$$\int |fg| \ d\mu \leq \left( \int |f|^p \ d\mu \right)^{1/p} \left( \int |g|^q \ d\mu \right)^{1/q}$$
+\end{proof}
+
+\item Suppose $0 < q < r < \infty$ and $0 < \theta < 1$. Let $p := (1 - \theta)q + \theta r$. Prove that if
+$f \in L^q(X,\mu) \cap L^r(X,\mu)$, then $f \in L^p(X,\mu)$ and
+$$||f||_p^p \leq ||f||_q^{(1 - \theta)q} \ ||f||_r^{\theta r}.$$
+\begin{proof}
+The trick here is to note that $1 = (1-\theta) + \theta = \frac{1}{1/(1-\theta)} + \frac{1}{1/\theta}$. We calculate 
+\begin{align*}
+    \int |f|^p \ d\mu &= \int |f|^{(1 - \theta)q} |f|^{\theta r} \ d\mu \\
+    &\leq \left( \int (|f|^{(1 - \theta)q})^{\frac{1}{1-\theta}} \ d\mu \right)^{1-\theta} \left( \int (|f|^{\theta r})^{\frac{1}{\theta}} \ d\mu \right)^{\theta} \\
+    &= \left( \int |f|^{q} \ d\mu \right)^{1-\theta} \left( \int |f|^{r} \ d\mu \right)^{\theta} \\
+\end{align*}
+\end{proof}
+
+\item Suppose $0 < q < r < \infty$ and $0 < \theta < 1$. Define $s \in (0,\infty)$ by $\frac{1}{s} = \frac{(1 - \theta)}{q} + \frac{\theta}{r}$. Prove that if $f \in L^q(X,\mu) \cap L^r(X,\mu)$, then $f \in L^s(X,\mu)$ and 
+$$||f||_s \leq ||f||_q^{(1 - \theta)} \ ||f||_r^{\theta}.$$
+\begin{proof}
+The trick here is similar to (b). Note that our condition implies that $1 = \frac{(1 - \theta)s}{q} + \frac{\theta s}{r}$, thus $1 = \frac{1}{q/(1 - \theta)s} + \frac{1}{r/\theta s}$. 
+\begin{align*}
+    ||f||_s &= \left( \int |f|^s \ d\mu \right)^{1/s} \\
+    &= \left( \int |f|^{s(1-\theta)} |f|^{s\theta} \ d\mu \right)^{1/s} \\
+    &\leq \left[ \left( \int |f^{s(1-\theta)}|^{q/(1 - \theta)s} \ d\mu \right)^{(1 - \theta)s/q} \ \left( \int |f^{s\theta}|^{r/\theta s} \ d\mu \right)^{\theta s/r} \right]^{1/s} \\
+    &= \left( \int |f|^q \ d\mu \right)^{(1 - \theta)/q} \left( \int |f|^r \ d\mu \right)^{\theta/r} \\
+    &= ||f||_q^{1 - \theta} \ ||f||_r^{\theta}.
+\end{align*}
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+
+
+\item[8.] Suppose $f : [1,\infty) \rightarrow \bbr$ is bounded and measurable, such that
+$\lim_{x \rightarrow \infty} \sqrt{x}|f(x)| = 0$. Prove that for any $p > 1/2$,
+$$\lim_{n \rightarrow \infty} \int_{1}^{\infty} \frac{\sqrt{n} f(nx)}{x^p} \ dx = 0.$$
+\phantomsection\label{q:w21-8}
+\phantomsection\label{q:w19-9a}
+See \hyperref[q:w21-8]{Winter 2021 \#8} and \hyperref[q:w19-9b]{Winter 2019 \#9}.
+\begin{proof}
+\begin{align*}
+    \int_{1}^{\infty} \frac{\sqrt{n} f(nx)}{x^p} \ dx &= \int_{1}^{\infty} \frac{\sqrt{nx} f(nx)}{x^{p+1/2}} \ dx \\
+    &\rightarrow_{dt=n dx }^{t=nx} \int_{n}^{\infty} \frac{\sqrt{t} f(t)}{(\frac{t}{n})^{p+1/2}} \ dt \\ 
+    &= \int_{n}^{\infty} \sqrt{t} f(t) \frac{n^{p-1/2}}{t^{p+1/2}} \ dt \\ 
+    &= \int_{n}^{\infty} \frac{\sqrt{t} f(t)}{t} \left(\frac{n}{t}\right)^{p-1/2} \ dt \\ 
+    &\leq \int_{n}^{\infty} \frac{f(t)}{\sqrt{t}} \ dt \\ 
+    &\leq \int_{n}^{\infty} f(t) \ dt \rightarrow 0. 
+\end{align*}
+This follows as $n/t \leq 1$ for $t \in (n,\infty)$. As our integral is bounded above by the tail end of a convergent ``series," it is squeezed towards 0 in the limit.
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{itemize}

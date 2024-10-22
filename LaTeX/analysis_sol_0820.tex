@@ -1,0 +1,199 @@
+
+
+\begin{itemize}
+
+\item[1.] Let $X$ be a Banach space. Suppose $\{x_n\} \subseteq X$ is a sequence such that for every $\varepsilon > 0$ there is a convergent sequence $\{y_n\}$ in $X$ with $||y_n - x_n|| < \varepsilon$, for all $n \in \bbn$.
+\begin{enumerate}[(a)]
+\item Prove that $\{x_n\}$ is convergent.
+\begin{proof}
+As $\{y_n\}$ is convergent, $||y_n - y_m|| < \eta$ for $m,n$ large enough. Therefore
+$$||x_n - x_{n+t}|| \leq ||x_n - y_n|| + ||y_n - y_{n+1}|| + ... + ||y_{n+t} - x_{n+t}|| < 2\varepsilon + t \eta.$$
+\end{proof}
+
+\item Prove, by providing a counterexample, that (1) is not necessarily true if the
+space $X$ is assumed only to be a normed linear space.
+\begin{proof}
+
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\item[2.] Let $C[0, 1]$ be the space of all continuous functions on $[0, 1]$ equipped
+with the usual supremum norm $||f||_{\infty} = \sup_{x \in [0,1]} |f(x)|$. Consider the functional $l : C[0, 1] \rightarrow \bbc$ defined by
+$$l(f) = \int_0^1 f(x) \ dx - f(\frac{1}{2}).$$
+Prove that $l$ is a bounded linear functional and find its norm.
+
+\begin{proof}
+$$|l(f)| \leq \int_0^1 |f(x)| \ dx + |f(1/2)| \leq 2||f||_{\infty}.$$
+
+\medskip 
+
+To see the opposite inequality, construct $f_n$'s as follows: constant 1 on 0 to $1/2 - 1/n$, linear on $1/2 - 1/n$ to $1/2$, $f_n(1/2) = -1$, linear $1/2$ to $1/2 + 1/n$, then constant 1 on $1/2 + 1/n$ to 1. \textit{This looks like a V-shape. Draw it!}
+
+\medskip 
+
+Each $||f_n||_{\infty} = 1$, and they tend towards the constant 1 function with a point discontinuity at $f(1/2) = -1$. The integral is 1, then subtracting $-1$ gives $l(f) = 2$. Hence $||l|| = 2$.
+\end{proof}
+
+
+
+
+
+
+\item[3.] Let $\calh$ be a Hilbert space and $T : \calh \rightarrow \calh$ be a bounded linear operator.
+Suppose that there exists $c > 0$ such that 
+$$\ip{Tx}{x} \geq c||x||^2, \ \ \ \forall x \in \calh.$$
+\begin{enumerate}[(a)]
+\item Prove that $T$ is injective
+\begin{proof}
+Let $x,y \in \Kern(T)$. Then 
+$$c||x-y||^2 \leq \ip{T(x-y)}{x-y} = \ip{Tx}{x-y} - \ip{Ty}{x-y} = 0.$$ 
+Thus $x=y$, so the kernel is trivial: $\Kern(T) = \{0\}$.
+\end{proof}
+
+\item Prove that the range of $T$ is a closed subspace of $\calh$.
+\begin{proof}
+Suppose $\{x_n\} \subseteq \calh$ such that $Tx_n \rightarrow y$. 
+Using $c||x||^2 \leq |\ip{Tx}{x}| \leq ||Tx|| \ ||x|| \ \ \Rightarrow \ \ c||x|| \leq ||Tx||$,
+we see $c||x_n - x_m|| \leq ||Tx_n - Tx_m||$. 
+
+Thus $\{Tx_n\}$ Cauchy implies $\{x_n\}$ Cauchy, so $x_n \rightarrow x$. Therefore $Tx_n \rightarrow Tx$, which is equivalent to $Tx = y$, so the range is closed.
+\end{proof}
+
+\item Prove that $T$ is invertible.
+\begin{proof}
+For $u \in \Ran(T)^{\perp}$, note that $c||u||^2 \leq \ip{Tu}{u}$ implies $u=0$. That is, $\Ran(T)^{\perp} = \{0\}$. Then 
+$$\Ran(T) = \overline{\Ran(T)} = (\Ran(T)^{\perp})^{\perp} =  \{0\}^{\perp} = \calh.$$
+As the range is all of $\calh$, for all $y$ there exists a unique $x$ such that $Tx=y$; i.e. $T$ is invertible. 
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[4.] Let $X$ be a normed linear space and $S, T : X \rightarrow X$ be two linear operators.
+\begin{enumerate}[(a)]
+\item Show that if $ST - TS$ commutes with $S$, then for all $n \in \bbn$
+$$S^nT - TS^n = nS^{n-1}(ST-TS).$$
+
+\begin{proof}
+For starters, we'll prove the $n=2$ case. 
+\begin{align*}
+    S^2T - TS^2 &= S^2T - STS + STS - TS^2 \\
+    &= S(ST - TS) + (ST - TS)S \\
+    &= S(ST - TS) + S(ST - TS) \\
+    &= 2S(ST - TS).
+\end{align*}
+
+With this, we induct. Suppose that it's true for $n-1$.
+\begin{align*}
+    S^nT - TS^n &= S^nT - S^{n-1}TS + S^{n-1}TS - STS^{n-1} + STS^{n-1} - TS^n \\ 
+    &= S^{n-1}(ST - TS) + S(S^{n-2}T - TS^{n-2})S + (ST - TS)S^{n-1} \\
+    &= 2S^{n-1}(ST - TS) + S((n-2) S^{n-3}(ST - TS))S \\ 
+    &= 2S^{n-1}(ST - TS) + (n-2) S^{n-1}(ST - TS) \\ 
+    &= n S^{n-1}(ST - TS)
+\end{align*}
+\end{proof}
+
+\item Show that there does not exist bounded linear operators $S, T : X \rightarrow X$ such
+that $ST - T S = I$, where $I : X \rightarrow X$ denotes the identity operator.
+
+\textit{In finite dimensions, over $\Mat_n(\bbr)$, this is a simple consequence of the trace function. As an exercise, show that it \textbf{is} possible over $\Mat_n(\bbz_p)$ for prime characteristic. Over infinite dimensions, this is important for quantum mechanical reasons. See Stone-von Neumann theorem.} 
+
+\medskip  
+
+\begin{proof}
+By above, $S^nT - TS^n = n S^{n-1}$. Then, by taking norms, 
+\begin{align*}
+    n||S^{n-1}|| &= ||S^nT - TS^n|| \\
+    &\leq ||S^nT|| + ||TS^n|| \\ 
+    &\leq ||S^n|| \ ||T|| + ||T|| \ ||S^n|| \\
+    &\leq 2||S^{n-1}|| \ ||S|| \ ||T||. 
+\end{align*}
+Hence $n \leq 2||T|| \ ||S||$ for all $n \in \bbn$. But this is in opposition to the boundedness of $T$ and $S$.
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\item[5.] Consider $(\bbr, \calb, \lambda)$, that is the real line with Lebesgue measure $\lambda$ defined on
+the Borel sets $\calb$. For $n \in \bbn$ define $f_n(x) := n \chi_{[1/n, 2/n]}(x)$, where $\chi_{[1/n, 2/n]}$ denotes the usual
+characteristic (indicator) function of $[1/n, 2/n]$. Decide which of the following convergence
+statements are true, and justify your answers.
+\begin{enumerate}[(a)]
+\item The sequence $\{f_n\}_{n \in \bbn}$ converges pointwise to the constant $0$ function.
+\begin{proof}
+True. This function tends towards a tall, thin rectangle right above the origin.
+\end{proof}
+
+\item The sequence $\{f_n\}_{n \in \bbn}$ converges in $L^p(\bbr, \calb, \lambda)$ to the constant $0$ function, for every $1 \leq p < \infty$.
+\begin{proof}
+Not true. 
+$$||f_n (x)||_p^p = \int |n \chi_{[1/n, 2/n]}|^p d\lambda = n^p \int \chi_{[1/n, 2/n]} d\lambda = n^{p-1}.$$
+\end{proof}
+
+\item The sequence $\{f_n\}_{n \in \bbn}$ converges in measure to the constant $0$ function.
+\begin{proof}
+True. By Chebyshev's, 
+$$\lambda(\{|f_n(x) \geq n|\}) \leq \frac{1}{n}\int |f_n(x)| d\lambda = \frac{1}{n}.$$
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[6.] Prove that for every $\varepsilon > 0$ there exists an open set $E \subseteq \bbr$ with
+Lebesgue measure $\lambda(E) < \varepsilon$ which is \textit{dense} in $\bbr$.
+\begin{proof}
+Enumerate $\bbq$ via the rationals. For any $\varepsilon > 0$, construct 
+$$A = \cup_{q_n \in \bbq} (q_n - \frac{\varepsilon}{2^{n+1}}, \ q_n + \frac{\varepsilon}{2^{n+1}}).$$
+This set is open, it covers every rational so is dense, and one can calculate $\lambda(A) \leq \varepsilon$.
+\end{proof}
+
+
+
+
+
+
+
+\item[7.] Let $(X,\calm, \mu)$ be a measure space. Suppose $f_n : X \rightarrow \bbr$ is a sequence
+of integrable functions such that $\int_{X} |f_n(x)| \ d\mu(x) \leq 1$ for all $n \in \bbn$.
+\begin{enumerate}[(a)]
+\item Prove that $\lim_{n \rightarrow \infty} \frac{f_n(x)}{n^2} = 0$ for a.e. $x \in X$.
+\begin{proof}
+Note 
+$$\sum_{n=1}^{\infty} \int_{X} \frac{f_n(x)}{n^2} \ d\mu \leq \sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6} < \infty.$$
+Thus $$\sum_{n=N}^{\infty} \int_{X} \frac{f_n(x)}{n^2} \ d\mu \rightarrow 0$$ as $N \rightarrow \infty$. By applying Fubini, we see $$\sum_{n=N}^{\infty} \frac{f_n(x)}{n^2} \rightarrow 0 \text{ a.e., }$$
+thus $\frac{f_n(x)}{n^2} \rightarrow 0$ a.e..
+\end{proof}
+
+\item Prove, by providing an example, that $\lim_{n \rightarrow \infty} \frac{f_n(x)}{n} = 0$ for a.e. $x \in X$ doesn't have to be true. 
+\begin{proof} 
+Let $f_n = (n - \frac{1}{n}) \chi_{(\frac{1}{n}, n)}$. Each $f_n$ integrates to 1, but 
+$$\frac{(n - \frac{1}{n}) \chi_{(\frac{1}{n}, n)}}{n} = \left(1 - \frac{1}{n^2}\right) \chi_{(\frac{1}{n}, n)} \rightarrow \chi_{(0, \infty)}.$$
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[8.] \textit{This problem looks annoying, so it has been excluded.}
+
+
+
+
+
+
+
+
+\end{itemize}

@@ -1,0 +1,169 @@
+\begin{itemize}
+
+\item[1.] Prove the following statements
+\begin{enumerate}[(a)]
+    \item If $\{x_n\}_{n=1}^{\infty} \subseteq \bbr$ is a Cauchy sequence that has a convergent subsequence, then $\{x_n\}$ is convergent
+    \begin{proof}
+
+    \end{proof}
+
+    \item A subset $A \subseteq \bbr$ is bounded if and only if $\lim_{n \rar \infty} a_n x_n = 0$ for all sequences $\{x_n\}_{n=1}^{\infty} \subseteq A$ and $\{a_n\}_{n=1}^{\infty} \subseteq \bbr$ with $\lim_{n \rar \infty} a_n = 0$
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[2.] Consider the Banach space $C[0, 1]$ consisting of all continuous functions $f :
+[0, 1] \rar \bbr$, equipped with the supremum norm $\norm{f}_{\infty} = \sup_{x \in [0,1]} |f(x)|$. Let $K : [0, 1] \times [0, 1] \rar \bbr$ be a continuous function. Consider the operator $T : C[0, 1] \rar C[0, 1]$ given by
+$$Tf(x) = \int_0^1 K(x,y)f(y) \ dy.$$
+\begin{enumerate}[(a)]
+    \item Prove that $T$ is bounded.
+    \begin{proof}
+
+    \end{proof}
+
+    \item Find $\norm{T}$. Justify your answer.
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\item[3.] Let $\calh$ be a Hilbert space. Recall that a sequence $\{f_n\}_{n=1}^{\infty} \subseteq \calh$ converges weakly to $f \in \calh$ if $\lim_{n \rar \infty} \ip{f_n}{g} = \ip{f}{g}$ for all $g \in \calh$. Prove the following statements.
+\begin{enumerate}[(a)]
+    \item A sequence $\{f_n\}_{n=1}^{\infty} \subseteq \calh$  converges to $f \in \calh$ if and only if $\lim_{n \rar \infty} \norm{f_n} = \norm{f}$
+and $\{f_n\}$ converges weakly to $f$.
+    \begin{proof}
+
+    \end{proof}
+
+    \item Let $T$ be a bounded linear operator on $\calh$. If $\{f_n\}_{n=1}^{\infty} \subseteq \calh$ converges weakly to $f \in \calh$, then $\{Tf_n\}_{n=1}^{\infty}$ converges weakly to $Tf$.
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\item[4.] Let $\calh$ be a Hilbert space and let $T_n : \calh \rar \calh$ be a sequence of bounded linear operators on $\calh$ with $\norm{T_n} \leq 1$ for all $n \in \bbn$. Suppose that for every vector $x \in \calh$ the following holds:
+$$T_i^* T_j x = 0,$$
+for all $i, j \in \bbn$ with $i \neq j$.
+\begin{enumerate}[(a)]
+    \item Prove that for every $i, j \in \bbn$ such that $i \neq j$, the ranges of $T_i$ and $T_j$ are orthogonal.
+    \begin{proof}
+
+    \end{proof}
+
+    \item Prove that for every $x \in \calh$ the sequence $\{T_n x\}$ is a Cauchy sequence.
+    \begin{proof}
+
+    \end{proof}
+    
+    \item Let $T : \calh \rar \calh$ be defined by $Tx = \lim_{n \rar \infty} T_n x$. Prove that $T$ is bounded and $\norm{T} \leq 1$.
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
+
+
+
+
+
+
+
+
+\item[5.] Consider the real line $\bbr$ equipped with the usual Euclidean metric.
+\begin{enumerate}[(a)]
+    \item Prove that if $A, B \subseteq \bbr$ are disjoint closed sets, then there exist disjoint open
+sets $U, V \subseteq \bbr$ such that $A \subseteq U$ and $B \subseteq V$ .
+    \begin{proof}
+
+    \end{proof}
+
+    \item Let $m^*$ denote the Lebesgue outer measure on $\bbr$. Prove that for any two sets $A, B \subseteq \bbr$ such that $\inf_{a \in A, b \in B} |a - b| > 0$ we have
+    $$m^*(A \cup B) = m^*(A) + m^*(B).$$
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
+
+
+
+
+
+
+
+\item[6.] Assume you know the function
+$$f_n(x) := \int_0^n t^{x-1} \left( 1 - \frac{t}{n} \right)^n \ dt$$
+is well defined for all $x > 0$ and $n \in \bbn$.
+\begin{enumerate}[(a)]
+    \item Apply a \textit{convergence theorem} to show that $\lim_{n \rar \infty} f_n(x)$ exists for all $x > 0$.
+    \begin{proof}
+
+    \end{proof}
+
+    \item Write down the \textit{staetment of the convergence theorem} that you use in (a).
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\item[7.] Let $1 \leq p < \infty$ and $f \in L^p(\bbr)$. Denote by $m$ the Lebesgue measure on $\bbr$.
+\begin{enumerate}[(a)]
+    \item Prove that $\lim_{n \rar \infty} m(\{x \in \bbr : |f(x)| \geq n\}) = 0$.
+    \begin{proof}
+
+    \end{proof}
+
+    \item Prove that the set $\{x \in \bbr : |f(x)| \neq 0\}$ is $\sigma$-finite.
+    \begin{proof}
+
+    \end{proof}
+    
+    \item Prove that $m(\{x \in \bbr : |f(x)| = \infty \}) = 0$.
+    \begin{proof}
+
+    \end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\item[8.] Denote by $m$ the Lebesgue measure on $\bbr$. Let $E \subset \bbr$ be a measurable
+set with $m(E) < \infty$. Suppose $f : E \rar \bbr$ is a measurable function, so that $f(x) > 0$ for a.e.
+$x \in E$. Prove that if $\{E_n\}$ is a sequence of measurable subsets of $E$, so that
+$$\lim_{n \rar \infty} \int_{E_n} f(x) \ dx = 0,$$
+then $\lim_{n \rar \infty} m(E_n) = 0$.
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\end{itemize}

@@ -1,0 +1,233 @@
+
+
+\begin{itemize}
+\item[1.] Consider the Banach space $l^{\infty}(\bbn)$ consisting, as usual, of all vectors $(x_n)$ whose coordinates form a bounded sequence, equipped with the norm
+$$||(x_n)||_{\infty} = \sup_{n \in \bbn}|x_n|.$$
+Let $C \subseteq l^{\infty}(\bbn)$ be a subset of $l^{\infty}(\bbn)$ consisting of all vectors $(x_n) \in l^{\infty}(\bbn)$ such that $\lim_{n \rightarrow \infty} x_n$ exists. Prove that $C$ is closed.
+
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+\item[2.] \phantomsection\label{q:w21-2} Let $K \subseteq l^{\infty}(\bbn)$ be a subset of $l^{\infty}(\bbn)$ given by 
+$$K = \{(x_n) \in l^{\infty}(\bbn) : |x_n| \leq \frac{1}{n} \text{ for all } n \in \bbn\}.$$
+Prove that $K$ is compact.
+\begin{proof}
+The idea here is that the tail gets arbitrarily close to $0$, so any $\varepsilon$-ball contains infinitely many terms in the sequence. Since there will only be finitely many terms left, $K$ is totally bounded.
+\end{proof}
+
+
+
+\item[3.] Let $C[0, 1]$ be the Banach space of all real-valued continuous functions on
+$[0, 1]$ equipped with the supremum norm $||f||_{\infty} = \sup_{x \in [0,1]}|f(x)|$. Consider the subset
+$C_0[0, 1] := \{f \in C[0, 1] : f(0) = 0\}$.
+\begin{enumerate}[(a)]
+\item Prove that $C_0[0, 1]$ is a closed subspace and then use this to show that $C_0[0, 1]$ is a Banach space itself.
+\begin{proof}
+One can easily show this is in fact a subspace. Convergence in the sup norm is equivalent to uniform convergence, which I believe suffices. As $C_0$ is closed in the Banach space $C$, it is itself a Banach space.
+\end{proof}
+
+\item Prove that $l : C_0[0, 1] \rightarrow \bbr$ defined by $l(f) = \int_{0}^1 f(x) \ dx$ is a bounded linear functional and compute its norm.
+\begin{proof}
+$$|l(f)| = |\int_{0}^1 f(x) \ dx| \leq ||f||_{\infty}.$$
+Thus $||l|| \leq 1$. 
+
+\medskip 
+
+Equality is attained by the sequence $f_n(x) = x^{1/n}$. Each $||f_n||_{\infty} = 1$, and $|l(f)| = \frac{n}{n+1}$. Thus $||l|| = 1$. 
+\end{proof}
+
+\item Let $l$ be the linear functional from (b). Prove that there exists no $f \in C_0[0, 1]$
+with $||f||_{\infty}$ such that $l(f) = ||l||$.
+\begin{proof}
+For $l(f) = ||l||$ to be true, the function $f$ must look like the constant $1$ function everywhere except $f(0)$. But to be continuous, there must be a region around the origin where $f$ is not the constant $1$ function. Thus the integral cannot be fully $1$. 
+
+\medskip 
+
+\textit{This contains two common themes in recent prelims: equality must be attained by a sequence, and there is some sort of give-and-take condition. i.e.: if $f$ is continuous, it violates the integral requirement. If it satisfies the integral, it cannot be continuous.}
+\end{proof}
+\end{enumerate}
+
+
+
+
+\item[4.] Let $\calh$ be a complex Hilbert space and $T : \calh \rightarrow \calh$ be a bounded linear operator.
+\begin{enumerate}[(a)]
+\item Prove that if $T$ is self-adjoint, then $||T|| = \sup\{|\ip{Tx}{x} : ||x|| \leq 1|\}.$
+\begin{proof}
+This is a classic question where one direction is nearly trivial, but the other is assuredly not. 
+
+\medskip 
+
+$(\Leftarrow)$ By Cauchy-Schwarz, 
+$$|\ip{Tx}{x}| \leq ||T|| \ ||x||^2.$$
+Taking the supremum over $x$ such that $||x|| \leq 1$ suffices.
+
+\medskip 
+
+$(\Rightarrow)$ Let $||x|| = ||y|| = 1$. While not obvious, introducing $y$ makes the computations more  manageable. Let $m = \sup\{|\ip{Tx}{x} : ||x|| \leq 1|\}$, so that $|\ip{Tu}{u}| \leq m \ ||u||^2$. This inequality can be seen by $u \mapsto \frac{u}{||u||}$.
+$$\ip{T(x \pm y)}{x \pm y} = \ip{Tx}{x} \pm 2|\ip{Tx}{y}| + \ip{Ty}{y}.$$
+Thus we see by subtracting the $+$ and $-$ cases that 
+\begin{align*}
+    |\ip{Tx}{y}| &\leq \frac{1}{4}\left|\ip{T(x + y)}{x + y} - \ip{T(x - y)}{x - y}\right| \\
+    &\leq \frac{1}{4}\left( |\ip{T(x + y)}{x + y}| + |\ip{T(x - y)}{x - y}| \right) \\
+    &\leq \frac{1}{4}\left( m \ ||x+y||^2 + m \ ||x-y||^2 \right) \\
+    &\leq \frac{m}{4}\left( ||x+y||^2 + ||x-y||^2 \right) \\
+    &\leq \frac{m}{4}\left( 2||x||^2 + 2||y||^2 \right) \\
+    &= m.
+\end{align*}
+This takes advantage of the Parallelogram identity. 
+
+\medskip 
+
+Now that we have $|\ip{Tx}{y}| \leq \sup_{||x|| \leq 1|} \{|\ip{Tx}{x}\}$, setting $y=\frac{||x|| \ Tx}{||Tx||}$ gives $||x|| \ ||Tx|| \leq m \ ||x||^2$, thus $||T|| = \frac{||Tx||}{||x||} \leq m$.
+\end{proof}
+
+\item Prove that (a) is in general not true if $T$ is not assumed to be self-adjoint.
+\begin{proof}
+Consider $T$ being a $90^{\circ}$ rotation in the plane. Then $\ip{Tx}{x} = 0$ for all $x$. This suggests $||T||=0$. But this rotation preserves distances; it is an isometry, thus $||T||=1$. Contradiction. 
+\end{proof}
+\end{enumerate}
+
+
+
+
+\item[5.] \phantomsection\label{q:w21-5} Consider the real line $\bbr$ equipped with the usual Euclidean metric and the
+Lebesgue measure.
+\begin{enumerate}[(a)]
+\item Prove that a finite intersection of sets which are open and dense in $\bbr$ is also open and dense in $\bbr$.
+\begin{proof}
+(Intersection of open is open) $A$ is open iff $A = Int(A)$. For $\{A_i\}_{i=1}^n$ open, let $x \in \cap A_i$. Then $x \in A_i$ for each $i$, implying $x \in Int(A_i)$, so there exists $\varepsilon_i$ such that $\calb_{\varepsilon_i}(x) \subseteq A_i$. For $\varepsilon := \min\{\varepsilon_i\}$, then $\calb_{\varepsilon}(x) \subseteq \calb_{\varepsilon_i}(x) \subseteq A_i$. Hence $\calb_{\varepsilon}(x) \subseteq \cap A_i$, so $x \in Int(\cap A_i)$.
+
+\medskip 
+
+(Intersection of dense is dense) $A \subseteq X$ is dense iff for all $\varepsilon > 0$, there exists $a \in A$ such that $d(x,a) < \varepsilon$. With this in mind, let $\{A_i\}_{i=1}^n$ be dense, with $x \in \cap A_i$. Then for all $\varepsilon_i > 0$, there exists $a_i \in A_i$ such that $d(x,a_i) < \varepsilon_i$. For $\varepsilon := \min\{\varepsilon_i\}$, then for all $a \in \cap A_i$ we have $d(x,a) \leq d(x,a_i) < \varepsilon$. Thus $\cap A_i$ is dense. 
+\end{proof}
+
+\item Prove that there exists a set with Lebesgue measure $0$ which is a countable intersection of sets which are open and dense in $\bbr$.
+\begin{proof}
+By the Lebesgue Regularization Theorem, for any measurable $A \subseteq \bbr$ there exists a G$_{\delta}$ set $G$ such that $A \subseteq G$ and $\lambda(G \setminus A) = 0$. Unfortunately, this says nothing about density, so we must construct an example. 
+
+\medskip 
+
+Let $Q = \bbq \cap [0,1]$ and enumerate $q_n \in Q$ via the naturals. Let $A_{\varepsilon} = \bigcup_{q_n \in Q} (q_n - \frac{\varepsilon}{2^{n+1}}, \ q_n + \frac{\varepsilon}{2^{n+1}})$. Each $A_{\varepsilon}$ is open and dense, with $\lambda(A_{\varepsilon}) \leq \varepsilon$. Taking $A = \bigcap_{m=1}^{\infty} A_{1/m}$ then gives a countable intersection of open and dense sets such that $\lambda(A)<\varepsilon$.
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[6.] Let $(X,\calm, \mu)$ be a measure space.
+\begin{enumerate}[(a)]
+\item State the Monotone Convergence Theorem.
+
+\item Prove that the sequence $f_n : \bbr \rightarrow \bbr$ given by $f_n(x) = -\frac{\chi_{[0,n]}(x)}{n}$ is monotonically
+increasing and converges almost everywhere, yet contradicts the conclusion of the
+Monotone Convergence Theorem. (Here $\chi_{[0,n]}$ denotes the characteristic/indicator
+function of the interval $[0, n]$.)
+\begin{proof}
+\textit{Draw them!}
+
+These functions tend a.e. to $0$, yet they all integrate to $-1$.
+\end{proof}
+
+\item Prove the following extension of Fatou’s Lemma: Suppose $h : X \rightarrow [0, \infty)$ is
+an $\calm$-measurable, integrable function, and $\{f_n\}_{n=1}^{\infty}$ is a sequence of $\calm$-measurable functions so that $-h \leq f_n$ for all $n \in \bbn$. Prove that 
+$$\int (\liminf_{n} f_n) \ d\mu \leq \liminf_{n} \int f_n \ d\mu.$$
+\begin{proof}
+By the condition stated, $f_n + h \geq 0$, so apply Fatou's to this:
+$$\int \liminf_{n} (f_n + h) \ d\mu \leq \liminf_{n} \int (f_n + h) \ d\mu.$$
+Expanding and subtracting the integrals of $h$ proves the problem.
+\end{proof}
+
+\item Prove that the extended Fatou’s Lemma (as stated in (c)) does not apply to
+the example in (b). Explain why.
+\begin{proof}
+If $-h \leq -\frac{1}{n} \chi_{[0,n]}$, then $h \geq \frac{1}{n} \chi_{[0,n]}$. 
+We can bound this with $h \geq \frac{1}{n} \chi_{[n-1,n]}$, so since these indicators are disjoint, $h \geq \sum_{n=1}^{\infty} \frac{1}{n} \chi_{[n-1,n]}$. But this sum has infinite integral. 
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+
+
+
+\item[7.] 
+\phantomsection\label{q:w21-7} Let $(X,\calm, \mu)$ be a measure space and let $(A_n)$ be a sequence of $\calm$-measurable
+subsets of $X$. Recall that $\limsup A_n = \cap_{n=1}^{\infty} \cup_{k=n}^{\infty} A_k$.
+\begin{enumerate}[(a)]
+\item Prove that $x \in \limsup A_n$ if and only if $\sum_{n=1}^{\infty} \chi_{A_n}(x) = \infty$.
+
+
+\item Let $f_n : X \rightarrow [0,\infty)$ be a sequence of non-negative $\calm$-measurable functions.
+Prove that if $\sum_{n=1}^{\infty} \int_{X} f_n(x) \ d\mu < \infty$, then for $\mu$ a.e. $x \in X$ we have $\sum_{n=1}^{\infty} f_n(x) < \infty.$
+\begin{proof}
+Let $\sum_{n=1}^{\infty} \int_{X} f_n(x) \ d\mu = M < \infty$. 
+By Chebyshev and Fubini's: 
+$$\mu\left(\{\sum_{n=1}^{\infty} f_n(x) > m\}\right) \leq \frac{1}{m} \int_{X} \sum_{n=1}^{\infty}  f_n(x) \ d\mu = \frac{1}{m} M \rightarrow 0 \text{ as } m\rightarrow\infty.$$
+\end{proof}
+
+\item Prove that if $\sum_{n=1}^{\infty} \mu(A_n) < \infty$, then $\mu(\limsup A_n) = 0$.
+\begin{proof}
+Classic Borel-Cantelli: 
+$$\mu(\limsup A_n) = \mu(\cap_{n=1}^{\infty} \cup_{k=n}^{\infty} A_k) \leq\mu(\cup_{k=n}^{\infty} A_k) \leq \sum_{k=n}^{\infty} \mu(A_k) \rightarrow 0.$$
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[8.] Suppose $f : [1,\infty) \rightarrow \bbr$ is bounded and measurable, such that
+$\lim_{x \rightarrow \infty} x|f(x)| = 0$. Prove that 
+$$\lim_{n \rightarrow \infty} \int_{1}^{\infty} \frac{n f(nx)}{x} \ dx = 0.$$
+\phantomsection\label{q:s21-8}
+\phantomsection\label{q:w19-9b}
+See \hyperref[q:s21-8]{Summer 2021 \#8} and \hyperref[q:w19-9b]{Winter 2019 \#9}.
+\begin{proof}(Freeman Slaughter)
+\begin{align*}
+    \int_{1}^{\infty} \frac{n f(nx)}{x} \ dx &\rightarrow_{n dx = dt}^{nx=t} \int_{n}^{\infty} \frac{t f(t)}{\left(t/n\right)^2} \ \frac{1}{n} \ dt \\
+    &= \int_{n}^{\infty} f(t) \frac{n}{t} \ dt \\
+    &\leq \int_{n}^{\infty} f(t) \ dt.
+\end{align*}
+This follows as $t\in(n,\infty)$ implies $\frac{n}{t} \in (0,1)$.
+\end{proof}
+
+\begin{proof}(Alternative soln. by Travis Alvarez)
+Since $f$ is bounded and $\lim_{x \rightarrow \infty} x|f(x)| = 0$, there exists some $M$ such that $xf(x) \leq M$ for all $x$. Thus 
+$$\frac{n f(nx)}{x} = \frac{nx f(nx)}{x^2} \leq \frac{M}{x^2}.$$
+This justifies applying DCT and swapping limit and integral. 
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{itemize}

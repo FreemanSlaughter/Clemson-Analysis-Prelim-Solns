@@ -1,0 +1,153 @@
+
+
+\begin{itemize}
+\item[1.] Let $\bbq$ be the set of rational numbers. 
+\begin{itemize}
+    \item[a)] Prove that $(\bbq, d_1)$ is not complete, where $d_1(x,y) = |x-y|$. 
+    
+    \item[b)] Prove that $(\bbq, d_2)$ is complete, where $d_2(x,y) = \begin{Bmatrix}
+0 & x=y, \\
+1 & x \neq y.
+\end{Bmatrix}$.
+\end{itemize}
+ 
+\begin{proof}
+\begin{itemize}
+    \item[a)] Consider truncations of $e$: \[\left|\sum_{n=0}^r \frac{1}{n!} - \sum_{n=0}^s \frac{1}{n!}\right| = \left| \sum_{n=r+1}^{s} \frac{1}{n!} \right| \rar 0,\]
+    so we have a Cauchy sequence of rational numbers tending to an irrational number. 
+    \item[b)] Every countable space is complete under discrete metric.
+\end{itemize}\end{proof}
+
+
+
+
+\item[2.] Consider the Banach space $l^\infty(\bbn)$ consisting of all vectors $(x_n)$ whose coordinates form a bounded sequence, equipped with the supremum norm 
+\[||(x_n)||_\infty = \text{sup}_{n\in\bbn} |x_n|.\]
+
+Let $c_0(\bbn) \subseteq l^\infty(\bbn)$ be a subset of $l^\infty(\bbn)$ consisting of all vectors $(x_n) \in l^\infty(\bbn)$ such that $\lim_{n\rar\infty} x_n = 0$.
+\begin{itemize}
+    \item[a)] Prove that $c_0(\bbn)$ is a closed subspace of $l^\infty(\bbn)$ and then use this to show that $c_0(\bbn)$ is a Banach space itself.
+    
+    \item[b)] Prove that $f:c_0(\bbn) \rar \bbr$ defined by $f((x_n)) = \sum_{n=1}^\infty \frac{x_n}{2^n}$ is a bounded linear functional and compute its norm.
+\end{itemize}
+ 
+\begin{proof}
+\begin{itemize}
+    \item[a)] Recall that a closed subspace of a Banach space is itself Banach! 
+
+    Clearly $c_0$ is a subspace of $l^\infty$. Let $x^{(k)} \in c_0$ converge to $y \in l^\infty$. Take $\varepsilon > 0$ and $N_0$ s.t. $\sup{|x_j^{(k)} - y_j|} < \varepsilon/2$ for all $k > N_0$. For each $k$, pick an $N_1$ s.t. $|x_j^{(k)}| < \varepsilon/2$ for all $j > N_1$. Thus, $|y_j| \leq |x_j^{(k)} - y_j| + |x_j^{(k)}| < \varepsilon$ for all $k > N_0$, $j > N_1$. Hence $y_j \rar 0$, so $y \in c_0$.
+    
+    \item[b)] We can see readily that $|f((x_n))| \leq ||(x_n)||_\infty$. For equality, we would \textit{like} to take the sequence of all $1$'s, but this is not in $c_0$. We can find a sequence however that gets us arbitrarily close: let $x^{(k)} = (1, 1, ..., 1, 0, 0, ...)$ with every term after the $k$-th being $0$. Then $|f(x^{(k)})| = 1 - 2^{-k}$, so taking $k \rar \infty$ gives $||f|| = 1$.
+\end{itemize}\end{proof}
+
+
+
+
+\item[3.] Let $K \subseteq l^\infty(\bbn)$ be a subset of $l^\infty(\bbn)$ given by 
+\[K=\{(x_n) \in l^\infty(\bbn) : |x_n|\leq \frac{1}{n} \text{ for all } n \in \bbn\}.\]
+Prove that $K$ is compact.
+ 
+\begin{proof}
+See \hyperref[q:w21-2]{Winter 2021 \#2}.
+\end{proof}
+
+
+
+
+\item[4.] Let $\calh$ be a Hilbert space and $T:\calh \rar \calh$ be a bounded linear operator. Suppose there exists a constant $\beta >0$ such that $\ip{Tx}{x} \geq \beta \norms{x}$ for all $x \in \calh$. Prove that for any bounded linear functional $f:\calh \rar \bbc$ there exists a unique $y\in\calh$ such that $f(x) = \ip{Tx}{y}$ for all $x\in\calh$.
+ 
+\begin{proof}
+Coercivity implies many useful properties, like invertibility. Here, the idea is to define a new inner product $(x,y) = \ip{Tx}{y}$ then apply Riesz Representation Theorem - a Mishko classic.
+\end{proof}
+
+
+
+\item[5.] Consider the real line $\bbr$ with the usual Euclidean metric and the Lebesgue measure. 
+\begin{itemize}
+    \item[a)] Prove that if $\{U_n\}_{n\in\bbn}$ is a sequence of sets which are all open and dense in $\bbr$, then their intersection $\cap_{n=1}^\infty U_n$ cannot be empty.
+    
+    \item[b)] Prove that there exists a sequence of sets $\{U_n\}_{n\in\bbn}$ which are all open and dense in $\bbr$ whose intersection $\cap_{n=1}^\infty U_n$ has Lebesgue measure zero.
+\end{itemize}
+ 
+\begin{proof}
+See \hyperref[q:w21-5]{Winter 2021 \#5}. Baire Category Theorem!
+\end{proof}
+
+
+
+
+
+
+
+\item[6.] Let $(X,\calm,\mu)$ be a measure space.
+\begin{itemize}
+    \item[a)] Suppose $f:X\rar[0,\infty]$ is an $\calm$-measurable function which is integrable. Prove that $f(x)<\infty$ for $\mu$ a.e. $x\in X$.
+    
+    \item[b)] Let $f_n:X\rar[0,\infty]$ be a sequence of non-negative $\calm$-measurable functions. Suppose that $\sum_{n=1}^\infty \int_X f_n \, d\mu < \infty.$ Prove that $\sum_{n=1}^\infty f_n(x) < \infty$ for $\mu$ a.e. $x \in X$.
+\end{itemize}
+ 
+\begin{proof}
+\begin{itemize}
+    \item[a)] Suppose not: that there exists an interval where $f(x)$ is not finite. Then in this region, it cannot be integrable - contradiction.
+    
+    \item[b)] See \hyperref[q:w21-7]{Winter 2021 \#7}. Apply Fubini to get finiteness, then Chebyshev to show the measure is $0$ in the limit.
+\end{itemize}
+\end{proof}
+
+
+
+
+
+
+\item[7.] Let $(X,\calm,\mu)$ be a measure space and let $\{A_n\}_{n=1}^\infty$ be a sequence of $\calm$-measurable subsets of $X$. Recall that $\limsup{A_n} = \cap_{n=1}^\infty \cup_{k=n}^\infty A_k$.
+\begin{itemize}
+    \item[a)] Prove that if $\sum_{n=1}^\infty \mu(A_n) < \infty$, then $\mu(\limsup{A_n}) = 0$.
+    
+    \item[b)] Let $f_n:X\rar\bbr$ be a sequence of $\calm$-measurable functions. Suppose that for every $\varepsilon>0$ we have $\sum_{n=1}^\infty \mu(\{x \in X : |f_n(x) - f(x)| \geq \varepsilon\}) > \infty$. Prove that $f_n \rar f$ pointwise $\mu$ a.e.
+    
+    \item[c)] Let $g_n:X\rar\bbr$ be a sequence of $\calm$-measurable functions. Suppose that $g_n \rar g$ in measure, i.e., for every $\varepsilon>0$ we have $\lim_{n\rar\infty} \mu(\{x \in X : |g_n(x) - g(x)| \geq \varepsilon\}) = 0$. Prove that there exists a subsequence $\{g_{n_k}\}$ such that $g_{n_k} \rar g$ pointwise $\mu$ a.e.
+\end{itemize}
+ 
+\begin{proof}
+\begin{itemize}
+    \item[a)] \hyperref[q:w21-7]{Winter 2021 \#7}; classic Borel-Cantelli! Think of the measure of the $\limsup$ as the tail end of a convergent series.
+    
+    \item[b)] Let $A_n = \{x \in X : |f_n(x) - f(x)| \geq \varepsilon\}$. By part a) we see $\mu(\mu(\{x \in X : |f_n(x) - f(x)| \geq \varepsilon\})) = 0$.
+    
+    \item[c)] Suppose $g_n \rar g$ in $\mu$. Let $n_1=1$ and define $n_j > n_{j-1}$ by $A_j = \{|g_{n_j} - g| \geq 1/j\}$ s.t. $\mu(A_j) \leq 2^{-j}$. Define $A = \limsup{A_j}$.
+
+    Then $\mu(A) = 0$ by part a), and for $x \not\in A$ we have $x \not\in \cup_{j=N}^\infty A_j$. That is, $|g_{n_j}(x) - g(x)| \leq 1/j$, so $g_{n_j} \rar g$ on $A^C$.
+\end{itemize}
+\end{proof}
+
+
+
+
+
+\item[8.] Let $(X,\calm,\mu)$ be a measure space. Let $f_n, g_n : X \rar \bbr$ be two sequences of $\calm$-measurable functions such that $f_n \rar f$ and $g_n \rar g$ pointwise $\mu$ a.e. Suppose that 
+\begin{itemize}
+    \item[a)] $|f_n(x)| \leq g_n(x)$ for all $x \in X$,
+    
+    \item[b)] $\lim_{n \rar \infty} \int_{X} g_n \, d\mu = \int_X g \, d\mu < \infty$. 
+\end{itemize}
+
+Prove that $\lim_{n \rar \infty} \int_{X} f_n \, d\mu = \int_X f \, d\mu$. 
+ 
+\begin{proof}
+Apply Fatou to $g-f_n \geq 0$ to get \[\limsup\int f_n \, d\mu \leq \int\limsup f_n \, d\mu.\]
+
+Since $|f-f_n| \leq |f| + |f_n| \leq 2|g|$, we see that $f-f_n$ is dominated. Applying reverse Fatou gives
+\[\limsup\int |f-f_n| \, d\mu \leq \int\limsup |f-f_n| \, d\mu = 0.\]
+
+Thus, 
+\[\lim \left| \int f \, d\mu - \int f_n \, d\mu \right| \leq \limsup\int |f-f_n| \, d\mu = 0,\]
+we have that 
+\[\int f \, d\mu = \lim \int f_n \, d\mu.\]
+\end{proof}
+
+
+
+
+
+\end{itemize}
+

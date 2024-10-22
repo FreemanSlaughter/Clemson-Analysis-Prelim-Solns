@@ -1,0 +1,208 @@
+
+\begin{itemize}
+\item[1.] Let $\mathcal{X}$ be a normed linear space. Suppose $\{x_n\}$ is a sequence of vectors in $\mathcal{X}$ such that $x_n \rightarrow x$ and $T_n : \mathcal{X} \rightarrow \mathcal{X}$ is a sequence of bounded linear operators such that $T_n \rightarrow T$ in operator norm. Prove that $T_n x_n \rightarrow Tx$.
+ 
+\begin{proof}
+Apply the triangle inequality:
+\begin{align*}
+    ||T_n x_n - Tx|| &\leq ||T_n x_n - T_n x_m|| + ||T_n x_m - T_n x|| + ||T_n x - T x|| \\
+    &\leq ||T_n|| \ ||x_n - x_m|| + ||T_n|| \ ||x_m - x|| + ||T_n - T|| \ ||x||
+\end{align*}
+Each of the above can be sufficiently bounded by the appropriate $\varepsilon$.
+\end{proof}
+
+\item[2.] Let $T:\mathcal{H} \rightarrow \mathcal{H}$ be a bounded linear operator on a Hilbert space $\mathcal{H}$. Denote by $\Ran(T)$ the range of $T$. Suppose there exists $c>0$ such that $c||x|| \leq ||Tx||$ for all $x \in \mathcal{H}$. Prove that $\Ran(T)$ is a closed subspace of $\mathcal{H}$.
+
+\phantomsection\label{q:s20-3}
+\phantomsection\label{q:w15-6}
+See \hyperref[q:s20-3]{Summer 2020 \#3} and \hyperref[q:w15-6]{Winter 2015 \#6} for more coercive operator problems.
+
+\begin{proof}
+Let $\{x_n\}$ be a sequence in $\mathcal{H}$ such that $Tx_n \rightarrow y$. Then $c||x_n - x_m|| \leq ||Tx_n - Tx_m||$ shows that $\{Tx_n\}$ Cauchy implies $\{x_n\}$ Cauchy, so $x_n \rightarrow x$. Thus $Tx_n \rightarrow Tx$, meaning $Tx = y$. Since $y \in \Ran(T)$, thus $\Ran(T)$ is closed.
+
+\medskip 
+
+\textit{In fact, stronger is true}: it can be seen that $T$ is injective. If $x,y \in \Kern(T)$, then $c||x-y|| \leq ||Tx - Ty|| = 0$ implies that $x=y$, so $\Kern(T) = \{0\}$. 
+
+Adding this to the prelim problem gives that $\mathcal{H} = \Ran(T) \oplus \{0\}$. That is, for all $y$ there exists a unique $x$ such that $Tx = y$; thus $T$ is invertible.
+\end{proof}
+
+
+\item[3.] Let $C^1[-1,1]$ be the set of all continuously differentiable real-valued function on $[-1,1]$. Consider the following two norms on $C^1[-1,1]$
+
+$$||f||_{\infty} = \sup_{x \in [-1,1]} |f(x)|, \ \ \ \ \ \ \ \ \ \ ||f||_{1} = \sup_{x \in [-1,1]} |f(x)| + \sup_{x \in [-1,1]} |f'(x)|.$$
+Define a linear functional $T:C^1[-1,1] \rightarrow \bbr$ by $Tf = f'(0)$.
+
+\phantomsection\label{q:w17-3}
+See \hyperref[q:w17-3]{Winter 2017 \#3}.
+
+\begin{enumerate}[(a)]
+
+\item Prove that $T$ is not bounded if $C^1[-1,1]$ is equipped with the supremum norm $||f||_{\infty}$.
+\begin{proof}
+Let $f_n(x) = \sin(\pi n x)$. Then $||f_n||_{\infty} = 1$ for all $n$. Yet $Tf_n = \pi n$, which increases without bound.
+\end{proof}
+
+\item Prove that $T$ is bounded if $C^1[-1,1]$ is equipped with the norm $||f||_{1}$ defined above and compute its operator norm.
+\begin{proof}
+The following implies that $||T|| \leq 1$ under the $||\cdot||_1$ norm: 
+$$|Tf| = |f'(0)| \leq \sup_{x \in [-1,1]} |f'(x)| \leq \sup_{x \in [-1,1]} |f(x)| + \sup_{x \in [-1,1]} |f'(x)| = ||f||_1.$$
+
+\medskip 
+
+We will not be able to find an example with exact equality, so we aim to find an example with equality \textit{in the limit}. For those using this to prepare, this treatment is becoming more frequent in the prelims.
+
+\medskip 
+
+Conversely, let $f_n(x) := x^n$. Then $||f_n||_1 = 1+n$, so 
+$$||T|| = \sup_{f_n \neq 0}\frac{||Tf_n||}{||f_n||} \geq \frac{||Tf_n||}{||f_n||} = \frac{n}{1+n} \rightarrow 1.$$
+As $||T|| \geq 1$ also, we have equality.
+\end{proof}
+\end{enumerate}
+
+
+\item[4.] Let $\mathcal{H}$ be a Hilbert space. Let $U:\mathcal{H} \rightarrow \mathcal{H}$ be a unitary operator, i.e., bounded linear operator satisfying $U^*U = UU^* = I$. Let $\calk = \{x \in \mathcal{H} \ : \ Ux=x\}$ be the subspace of invariant vectors of $U$.
+
+\begin{enumerate}[(a)]
+
+\item Prove that $\calk = (\Ran(I-U))^{\perp}$
+\begin{proof}
+Note the line of equivalences: $x \in \calk$ iff $Ux=x$ iff $(I-U)x = 0$ iff $x \in \Kern(I-U)$. Thus $\calk \perp \Ran(I-U)$.
+\end{proof}
+
+\item Prove that $\calh = \calk \oplus \overline{\Ran(I-U)}$.
+\begin{proof}
+By Hilbert decomposition theorem, 
+$$\calh = \calk \oplus \calk^{\perp} = \calk \oplus (\Ran(I-U)^{\perp})^{\perp} = \calk \oplus \overline{\Ran(I-U)}.$$
+\end{proof}
+
+\item Let $P:\calh \rightarrow \calk$ be the orthogonal projection onto $\calk$. Prove that for each $x \in \calh$ we have 
+$$Px = \lim_{N \rightarrow \infty} \frac{1}{N} \sum_{n=1}^{N} U^n x.$$
+\begin{proof}
+By the above, we can decompose any $x$ uniquely into $x = x_K + x_R$, where $x_K \perp x_R$. It is sufficient to determine the action of $P$ on these parts.
+
+\medskip 
+
+For $x \in \calk$, 
+$$||Px - \lim_{N \rightarrow \infty} \frac{1}{N} \sum_{n=1}^{N} U^n x|| = ||x - \lim_{N \rightarrow \infty} \frac{1}{N} \sum_{n=1}^{N} x|| = ||x - \lim_{N \rightarrow \infty} x|| = 0.$$
+
+\medskip 
+
+For $x \in \overline{\Ran(I-U)}$, let $x = (I-U)y$. Then by telescoping sum, 
+
+\begin{align*}
+    ||Px - \lim_{N \rightarrow \infty} \frac{1}{N} \sum_{n=1}^{N} U^n x|| &= ||0 - \lim_{N \rightarrow \infty} \frac{1}{N} \sum_{n=1}^{N} U^n (I-U)y|| \\
+    &= ||\lim_{N \rightarrow \infty} \frac{1}{N} (Iy - U^{N+1}y)|| \\
+    &\leq \lim_{N \rightarrow \infty} \frac{1}{N} (||y|| + ||U^{N+1}|| \ ||y||) \\
+    &\leq \lim_{N \rightarrow \infty} \frac{1}{N} (||y|| + ||U||^{N+1} \ ||y||) \\
+    &= \lim_{N \rightarrow \infty} \frac{1}{N} \  2||y||
+    &= 0.
+\end{align*}
+Recall that $U$ unitary implies $||U||=1$. Thus, the two statements are equivalent. 
+\end{proof}
+\end{enumerate}
+
+
+\item[5.] Let $(X,\calm,\mu)$ be a finite measure space. Suppose $\{A_n\}_{n=1}^{\infty}$ is a sequence of measurable sets such that $A_{n+1} \subseteq A_{n}$ for all $n \in \bbn$.
+\begin{enumerate}[(a)]
+\item Prove that 
+$$\mu(\cap_{n=1}^{\infty} A_n) = \lim_{n \rightarrow \infty} \mu(A_n).$$
+\begin{proof}
+Let $B_n = A_1 \setminus A_n$. Since the $B_n$'s are increasing, we know from measure axioms that
+$$\mu\left(\cup_{n=1}^{\infty} B_n\right) = \lim_{n \rightarrow \infty} \mu(B_n).$$
+First, we prove a lemma: 
+\begin{align*}
+    A_1 \setminus \cap_{n=1}^{\infty} A_n &= A_1 \cap \left(\cap_{n=1}^{\infty} A_n\right)^c \\
+    &= A_1 \cap \cup_{n=1}^{\infty} A_n^c \\ 
+    &= \cup_{n=1}^{\infty} (A_1 \cap A_n^c) \\
+    &= \cup_{n=1}^{\infty} A_1 \setminus A_n.
+\end{align*}
+This last union is the union of $B_n$'s, so we aim to manipulate this feature. 
+\begin{align*}
+    \mu(A_1) - \mu(\cap_{n=1}^{\infty} A_n) &= \mu(A_1 \setminus \cap_{n=1}^{\infty} A_n) \\  
+    &= \mu(\cup_{n=1}^{\infty} A_1 \setminus A_n) \\ 
+    &= \mu(\cup_{n=1}^{\infty} B_n) \\ 
+    &= \lim_{n \rightarrow \infty} \mu(B_n) \\
+    &= \lim_{n \rightarrow \infty} \mu(A_1 \setminus A_n) \\
+    &= \mu(A_1) - \lim_{n \rightarrow \infty} \mu(A_n).
+\end{align*}
+Thus $\mu(\cap_{n=1}^{\infty} A_n) = \lim_{n \rightarrow \infty} \mu(A_n)$.
+\end{proof}
+
+\item Let $\nu$ be another finite measure on $(X,\calm)$ such that $\nu(E)=0$ whenever $E \in \calm$ with $\mu(E)=0$. Prove that for each $\varepsilon$ there exists $\delta$ such that $\mu(E) < \delta$ implies $\nu(E) < \varepsilon$.
+\begin{proof}
+This condition is called ``absolute continuity" and denoted $\nu << \mu$.
+
+\medskip 
+
+For contradiction, suppose that for all $\varepsilon > 0$ there exists a $\delta > 0$ such that $\mu(E)<\delta$ but $\nu(E)<\varepsilon$. Let $E_{n+1} \subseteq E_{n}$ with $\mu(E_n) = \frac{\delta}{n}$.
+
+\medskip 
+
+For $n\geq2$, $\mu(E_n) < \delta$. Since  $\mu(\cap_{n=1}^{\infty} E_n) = \lim_{n \rightarrow \infty} \mu(E_n) = \lim_{n \rightarrow \infty} \frac{\delta}{n} = 0$, it must be that $\nu(\cap_{n=1}^{\infty} E_n) = 0$ also. But then $\mu(\cap_{n=1}^{\infty} E_n) < \delta$ while $\mu(\cap_{n=1}^{\infty} E_n) \ngtr \varepsilon$.
+\end{proof}
+\end{enumerate}
+
+
+
+\item[6.]  Let $(X,\calm,\mu)$ be a measure space. Recall that a set $E \subseteq X$ is said to be $\sigma$-finite if there exists a sequence $\{E_n\}_{n=1}^{\infty}$ of measurable sets with $\mu(E_n)<\infty$ for all $n \in \bbn$ such that $E = \cup_{n=1}^{\infty} E_n$. Prove that if $f \in L^p(X,\mu)$ for $1 \leq p < \infty$, then the set $E:= \{x \in X : f(x) \neq 0\}$ is $\sigma$-finite.
+
+\phantomsection\label{q:w18-7}
+See \hyperref[q:w18-7]{Winter 2018 \#7} for the special case of $p=1$.
+
+\begin{proof}
+Let $E_n := \{|f| \geq \frac{1}{n}\}$. Clearly, $\cup_{n=1}^{\infty} E_n = E$.
+
+To show finiteness: 
+\begin{align*}
+    \mu(E_n) &= \int_{\{\frac{1}{n} \leq |f|\}} 1 \ d\mu \\ 
+    &= n^p \int_{\{\frac{1}{n} \leq |f|\}} \left(\frac{1}{n} \right)^p \ d\mu \\ 
+    &\leq n^p \int_{\{\frac{1}{n} \leq |f|\}} |f|^p \ d\mu \\ 
+    &\leq n^p \int_{X} |f|^p \ d\mu \\
+    &< \infty.
+\end{align*}
+Thus for each $n$, we have $\mu(E_n)<\infty$.
+\end{proof}
+
+
+
+\item[7.]  Let $(X,\calm,\mu)$ be a measure space. Let $f_n : X \rightarrow \bbr$ be a sequence of integrable functions and $f : X \rightarrow \bbr$ a measurable function.
+\begin{enumerate}[(a)]
+\item Prove that if for some $\delta > 0$ we have $\int_{X} |f_n(x) - f(x)| \ d\mu(x) \leq \frac{1}{n^{1+\delta}}$ for all $n \in \bbn$, then $f_n \rightarrow f$ pointwise a.e..
+\begin{proof}
+\textbf{INCOMPLETE}
+\end{proof}
+
+\item Prove that $\int_{X} |f_n(x) - f(x)| \ d\mu(x) \leq \frac{1}{n}$ for all $n \in \bbn$ does not in general imply $f_n \rightarrow f$ pointwise a.e..
+\begin{proof}
+Consider the following modified typewriter sequence: $f_n = \frac{1}{2}\chi_{\{\frac{n-2^k}{2^k}, \frac{n+1-2^k}{2^k}\}}$ indexing over $2^k \leq n < 2^{k+1}$. This function converges to $0$ in $L^1$, but not pointwise a.e. to any function. 
+
+See that $$\int_{X} f_n(x) \ d\mu = \int_{X} \frac{1}{2}\chi_{\{\frac{n-2^k}{2^k}, \frac{n+1-2^k}{2^k}\}} \ d\mu = \frac{1}{2} \left(\frac{n+1-2^k}{2^k} - \frac{n-2^k}{2^k} \right) = \frac{1}{2^{k+1}} < \frac{1}{n}.$$
+This follows as $n < 2^{k+1}$ implies $\frac{1}{2^{k+1}} < \frac{1}{n}$.
+
+\medskip 
+
+But, this sequence jumps back up to satisfy $f_n(x)=1$ for infinitely many $x$, so cannot converge pointwise a.e. to the $0$ function. 
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[8.] Suppose $f:[1,\infty) \rightarrow \bbr$ is a continuous function such that $\lim_{x \rightarrow \infty} |f(x)| = 0$. Prove that for any integrable function $g:[1,\infty) \rightarrow \bbr$ the following equality holds 
+$$\lim_{n \rightarrow \infty} \int_{1}^{\infty} f(n+x)g(x) \ dx = 0.$$
+\begin{proof}
+Since $f$ is continuous, there exists some finite number $M$ such that $|f(x)| \leq M$ for all $x$. Then $|f(n+x)g(x)| \leq Mg(x)$, with $\int Mg(x) \ dx < \infty$.
+
+\medskip 
+
+Since $f(n+x)g(x)$ is dominated by an integrable function, we are justified in exchanging the limit and integral. Hence 
+$$\lim_{n \rightarrow \infty} \int_{1}^{\infty} f(n+x)g(x) \ dx =  \int_{1}^{\infty} \lim_{n \rightarrow \infty} f(n+x)g(x) \ dx = \int_{1}^{\infty} 0 g(x) \ dx = 0.$$ 
+\end{proof}
+
+
+
+
+
+\end{itemize}

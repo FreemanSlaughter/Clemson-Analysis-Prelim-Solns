@@ -1,0 +1,197 @@
+
+\begin{itemize}
+
+\item[1.] Let $(X, \ip{\cdot}{\cdot})$ be an inner product space.
+\begin{enumerate}[(a)]
+\item Prove that every convergent sequence in $(X, \ip{\cdot}{\cdot})$ is bounded.
+\begin{proof}
+By contrapositive, not bounded implies not convergent.
+\end{proof}
+
+\item Prove that if $x_n \rightarrow x$, $y_n \rightarrow y$, then $\ip{x_n}{y_n} \rightarrow \ip{x}{y}$.
+\begin{proof}
+By boundedness, let $||x_n|| < M$ for all $n$. Then 
+\begin{align*}
+    |\ip{x_n}{y_n} - \ip{x}{y}| &= |\ip{x_n}{y_n} - \ip{x_n}{y} + \ip{x_n}{y} - \ip{x}{y}| \\
+    &= |\ip{x_n}{y_n-y} - \ip{x_n - x}{y}| \\
+    &< M||y_n - y|| + ||x_n - x|| \ ||y||.
+\end{align*}
+For $n$ large enough, this becomes sufficiently small.
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+\item[2.] Let $(X, ||\cdot||)$ be a normed linear space and $Y \subset X$ be a proper subspace. Prove that the interior of $Y$ is empty, i.e., $\Int(Y) = \emptyset$.
+\begin{proof}
+Suppose not. Then there exists some open ball in $Y$. Taking successive differences will fill some open ball around the origin, then taking the span will give the whole space.
+\end{proof}
+
+
+
+
+\item[3.] Let $l^2(\bbn)$ be the space of square summable sequences and define $T:l^2(\bbn) \rightarrow l^2(\bbn)$ by
+$$T(\{x_n\}) = \{x_2 - x_1, x_3 - x_2, ..., x_{n+1} - x_{n}\}.$$
+Prove that $T$ is bounded and find $||T||$.
+\begin{proof}
+Recall the AM-GM inequality: $2ab \leq a^2 + b^2$.
+\begin{align*}
+    ||Tx||^2 &= \sum_{i=1}^{\infty} |x_{i+1} - x_i|^2 \\
+    &= \sum_{i=1}^{\infty} |x_{i+1}^2 -2x_{i+1}x_i  + x_i^2| \\
+    &\leq \sum_{i=1}^{\infty} |x_{i+1}|^2 + 2|x_{i+1}||x_i|  + |x_i|^2 \\
+    &\leq \sum_{i=1}^{\infty} |x_{i+1}|^2 + (|x_{i+1}|^2 + |x_i|^2)  + |x_i|^2 \\
+    &= \sum_{i=1}^{\infty} 2|x_{i+1}|^2  + \sum_{i=1}^{\infty} 2|x_i|^2 \\
+    &\leq \sum_{i=1}^{\infty} 4|x_{i}|^2 \\ 
+    &= 4||x||^2.
+\end{align*}
+Thus $||Tx|| \leq 2||x||$, so $||T|| \leq 2$.
+
+\medskip 
+
+For equality, note that the standard basis of $\{e_n\}$ satisfies $||Te_n||^2 = 2$. Thus $||T||=2$.
+\end{proof}
+
+
+
+
+
+
+\item[4.] Let $(X, d)$ be a compact metric space and let $f : X \rightarrow X$ be a continuous function. Suppose that for every $\varepsilon > 0$ there exists $x \in X$ such that $d(x_{\varepsilon}, f(x_{\varepsilon})) < \varepsilon$. Prove that there exists $x \in X$ such that $f(x) = x$.
+\begin{proof}
+All bounded sequences have a convergent subsequence, so there exists $x_{n_k} \rightarrow x$. 
+$$d(x,f(x)) \leq d(x,x_{n_k}) + d(x_{n_k},f(x_{n_k})) + d(f(x_{n_k}),f(x)).$$
+The sequence of numbers $d(x_{\varepsilon}, f(x_{\varepsilon}))$ is bounded, so has convergent subsequence. With this and by continuity, these terms can all be made arbitrarily small.
+\end{proof}
+
+
+
+
+
+
+
+\item[5.] Let $\calh$ be a Hilbert space and let $\calm$ and $\caln$ be two closed subspaces of $\calh$. Prove that if
+$$\sup \{|\ip{x}{y}| : ||x||=||y|| =1, x \in \calm, y \in \caln\} < 1,$$
+then $\calm + \caln = \{x + y : x \in \calm, y \in \caln\}$ is a closed subspace of $\calh$.
+\begin{proof}
+\textbf{INCOMPLETE}
+\end{proof}
+
+
+
+
+
+
+\item[6.] Let $(X, \cals)$ be a measurable space, and let $E_n \in \cals$, $n \in \bbn$, be a
+sequence of measurable sets. Prove that the set $E$ consisting of all points $x \in X$ that belong
+to infinitely many of the sets $E_n$ is measurable.
+
+\textit{This is effectively asking you to show that $\limsup(E_n)$ is measurable, which has appeared on many past prelims.}
+
+\begin{proof}
+From base principles, note that $$\{\sup_n f_n \geq c\} = \cup_{n}\{f_n \geq c\}.$$ By the same reasoning, $\inf$ is measurable. The rest follows from the fact that $$\limsup_n f_n = \inf_n \sup_{k \geq n} f_k.$$
+\end{proof}
+
+
+
+
+
+\item[7.] Let $(X, \cals, \mu)$ be a measure space and let $f : X \rightarrow \bbr$ be an integrable
+function, i.e., $f \in L^1 (X, \mu)$. Suppose that $E_n \in \cals$, $n \in \bbn$, is a sequence of measurable sets such that $\lim_{n\rightarrow \infty} \mu(E_n) = 0$. Prove that
+$$\lim_{n\rightarrow \infty} \int_{E_n} f \ d\mu = 0.$$
+\begin{proof}
+Start by noting $f \chi_{E_n}$ is dominated by the integrable $f \chi_{X}$. Then applying DCT gives 
+$$\lim_{n\rightarrow \infty} \int_{E_n} f \ d\mu = \lim_{n\rightarrow \infty} \int_{X} f \chi_{E_n} \ d\mu = \int_{X} f \chi_{\emptyset} \ d\mu = 0.$$
+\end{proof}
+
+
+
+
+
+
+
+
+
+\item[8.] Let $(X, \cals)$ be a measure space, and let $(\mu_n)_{n\in\bbn}$ be a sequence of
+measures on  $(X, \cals)$ such that $\mu_n(X) = 1$ for all $n\in\bbn$. Prove that $\lambda : \cals \rightarrow [0,\infty]$ defined by
+$$\lambda(F) := \sum_{n=1}^{\infty} \frac{\mu_n(F)}{2^n}, \ \ \ \ \text{ for } F\in\cals$$
+is a measure on $(X, \cals)$ with $\lambda(X) = 1$.
+\begin{proof}
+Clearly, $$\lambda(X) = \sum_{n=1}^{\infty} \frac{1}{2^n} = 1.$$
+Also, $\lambda(\emptyset) = 0$. 
+
+\medskip 
+
+Since $\mu$ is a measure, for pairwise disjoint $\{A_i\}$, we can apply Fubini:
+\begin{align*}
+    \lambda \left(\cup_i A_i \right) &= \sum_{n} \frac{\mu_n\left(\cup_i A_i \right)}{2^n} \\
+    &= \sum_{n} \frac{ \sum_{i} \mu_n(A_i)}{2^n} \\
+    &= \sum_{i} \sum_{n} \frac{\mu_n(A_i)}{2^n} \\
+    &= \sum_{i} \lambda(A_i).
+\end{align*}
+
+\end{proof}
+
+
+
+
+
+
+
+\item[9.] Let $f \in L^2[0,\infty)$ and let $G : (0,\infty) \rightarrow \bbr$ be defined by
+$$G(t) = \int_0^{\infty} \frac{f(x)}{1+tx} \ dx.$$
+\begin{enumerate}[(a)]
+\item Prove that $\lim_{t\rightarrow \infty} G(t) = 0$.
+\begin{proof}
+Let $||f||_2 < M$. By H\"{o}lder's, 
+\begin{align*}
+    G(t) &= \int_0^{\infty} \frac{f(x)}{1+tx} \ dx \\
+    &\leq \left( \int_0^{\infty} f(x)^2 \ dx \right)^{1/2} \ \left( \int_0^{\infty} \frac{1}{1+tx}^2 \ dx \right)^{1/2} \\ 
+    &\rightarrow_{tdx=dy}^{1+tx=y} M \left( \int_1^{\infty} \frac{1}{ty^2} \ dy \right)^{1/2} \\ 
+    &= \frac{M}{\sqrt{t}} \rightarrow 0.
+\end{align*}
+Therefore $G(t) \rightarrow 0$.
+\end{proof}
+
+\item Prove that $G$ is continuous at every point of $(0,\infty)$.
+\begin{proof}
+\textbf{INCOMPLETE}
+\end{proof}
+\end{enumerate}
+
+
+
+
+
+
+\item[10.] Let $(X, \cals, \mu)$ be a measure space and let $f : X \rightarrow [0,\infty)$ be a
+non-negative measurable function. Suppose that
+$$\int_{X} e^{sf(x)} \ d\mu(x) \leq e^{s^2}, \ \ \ \ \ \text{ for every } s > 0.$$
+Prove that $\mu(\{x \in X : f(x) > t\}) \leq e^{-\frac{t^2}{4}}$, for every $t > 0$.
+\begin{proof}
+As the exponential is monotonic increasing and invertible, we have the equivalence $\{f(x) \geq t\}$ iff $\{e^{sf(x)} \geq e^{st}\}$. Then by Chebyshev, 
+\begin{align*}
+    \mu(\{f(x) \geq t\}) &= \mu(\{e^{sf(x)} \geq e^{st}\}) \\
+    &\leq \frac{1}{e^{st}} \int_{X} e^{sf(x)} \ d\mu \\
+    &\leq e^{s^2-st}.
+\end{align*}
+
+Completing the square gives that $s^2-st = \frac{1}{4}(2s-t)^2 - \frac{t^2}{4}$. Taking the infimum over $s$ shows the minimum is clearly when $2s=t$. Thus 
+$$\mu(\{f(x) \geq t\}) \leq \inf_s \{e^{\frac{1}{4}(2s-t)^2 - \frac{t^2}{4}}\} = e^{- \frac{t^2}{4}}.$$
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{itemize}
